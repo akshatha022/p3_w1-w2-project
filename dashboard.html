@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .dashboard {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .song-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .song-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e9e9e9;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .song-list li:hover {
+            background-color: #d9d9d9;
+        }
+        audio {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Music Dashboard</h1>
+        <ul class="song-list">
+            <li data-src="song1.mp3">Song 1</li>
+            <li data-src="song2.mp3">Song 2</li>
+            <li data-src="song3.mp3">Song 3</li>
+        </ul>
+        <audio id="audio-player" controls>
+            <source id="audio-source" src="" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const songList = document.querySelectorAll('.song-list li');
+            const audioPlayer = document.getElementById('audio-player');
+            const audioSource = document.getElementById('audio-source');
+
+            songList.forEach(song => {
+                song.addEventListener('click', function() {
+                    const src = this.getAttribute('data-src');
+                    audioSource.src = src;
+                    audioPlayer.load();
+                    audioPlayer.play();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
